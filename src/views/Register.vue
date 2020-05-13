@@ -22,11 +22,7 @@ export default {
   methods: {
     register: async function() {
       try {
-        const {
-          data: {
-            data: { user, session }
-          }
-        } = await API.create()
+        const { user, session } = await API.create()
           .post()
           .url(`/users`)
           .data({
@@ -36,11 +32,11 @@ export default {
           .build();
 
         store.commit("createSession", { user, session });
+        localStorage.setItem("user", JSON.stringify(session));
 
         router.push("/");
       } catch (error) {
-        console.log(error);
-        alert("에러발생");
+        alert(error.message);
       }
     }
   }

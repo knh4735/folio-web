@@ -11,8 +11,34 @@ Vue.use(VueRouter);
 
 const logout = (to, from, next) => {
   store.commit("destroySession");
+  localStorage.removeItem("user");
   alert("ㅂㅂ");
   next("/login");
+};
+
+const hasValidToken = async () => {
+  try {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!storedUser || storedUser.expiresAt > new Date()) {
+      alert("로그인 필요");
+      return false;
+    }
+
+    const { user } = await API.create()
+      .post()
+      .url(`/users/profile`)
+      .headers({ Authorization: storedUser.token })
+      .build();
+
+    store.commit("createSession", { user });
+
+    return true;
+  } catch (error) {
+    store.commit("destroySession");
+    localStorage.removeItem("user");
+    return false;
+  }
 };
 
 const routes = [
@@ -57,42 +83,17 @@ const router = new VueRouter({
 // 인증
 router.beforeEach(async (to, from, next) => {
   if (to.name === "Login" || to.name === "Register") {
-    if (store.state.user) {
+    if (store.state.user || (await hasValidToken())) {
       alert("이미 로그인데스");
       return next(from);
     }
-    return next();
-  }
-
-  if (store.state.user) return next();
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-
-  if (!storedUser || storedUser.expiresAt > new Date()) {
-    alert("로그인 필요");
-    return next("/login");
-  }
-
-  try {
-    const {
-      data: {
-        data: { user, session }
-      }
-    } = await API.create()
-      .post()
-      .url(`/sessions`)
-      // .data({ token: storedUser.token })
-      .data({
-        username: "test123",
-        password: "test1234"
-      })
-      .build();
-
-    store.commit("createSession", { user, session });
 
     return next();
-  } catch (error) {
-    return next("/login");
   }
+
+  if (store.state.user || (await hasValidToken())) return next();
+
+  return next("/login");
 });
 
 export default router;

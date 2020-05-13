@@ -67,13 +67,17 @@ class ApiBuilder {
   }
 
   build() {
-    return Axios({
-      method: this._method,
-      headers: this._headers,
-      url: this._url,
-      data: this._data,
-      timeout: this._timeout,
-      params: this._params
+    return new Promise((resolve, reject) => {
+      Axios({
+        method: this._method,
+        headers: this._headers,
+        url: this._url,
+        data: this._data,
+        timeout: this._timeout,
+        params: this._params
+      })
+        .then(response => resolve(response.data.data))
+        .catch(error => reject(error.response.data));
     });
   }
 }
