@@ -7,7 +7,7 @@
       <router-link to="/logout">Logout</router-link> |
       <router-link to="/register">Register</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 

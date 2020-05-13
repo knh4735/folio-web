@@ -1,23 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
+  state: {},
   mutations: {
-    createSession (state, payload) {
+    createSession(state, payload) {
       state.user = payload.user;
-      localStorage.setItem('user', JSON.stringify(payload.session));
+      localStorage.setItem("user", JSON.stringify(payload.session));
     },
-    destroySession (state) {
+    destroySession(state) {
       delete state.user;
-      localStorage.removeItem('user');
+      localStorage.removeItem("user");
     }
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {}
+});

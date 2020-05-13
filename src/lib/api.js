@@ -1,11 +1,11 @@
-import Axios from 'axios';
+import Axios from "axios";
 
 const apiConfig = {
   url: "http://localhost:3000",
   timeout: 5000,
   headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-  },
+    "Content-Type": "application/json; charset=utf-8"
+  }
 };
 
 class ApiBuilder {
@@ -19,22 +19,22 @@ class ApiBuilder {
   }
 
   get() {
-    this._method = 'GET';
+    this._method = "GET";
     return this;
   }
 
   post() {
-    this._method = 'POST';
+    this._method = "POST";
     return this;
   }
 
   delete() {
-    this._method = 'DELETE';
+    this._method = "DELETE";
     return this;
   }
 
   put() {
-    this._method = 'PUT';
+    this._method = "PUT";
     return this;
   }
 
@@ -56,7 +56,7 @@ class ApiBuilder {
   headers(headers) {
     this._headers = {
       ...this._headers,
-      ...headers,
+      ...headers
     };
     return this;
   }
@@ -73,7 +73,7 @@ class ApiBuilder {
       url: this._url,
       data: this._data,
       timeout: this._timeout,
-      params: this._params,
+      params: this._params
     });
   }
 }
