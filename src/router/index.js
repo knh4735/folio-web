@@ -1,99 +1,70 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-// import Logout from '../views/Logout.vue'
-import Register from "../views/Register.vue";
-import store from "../store";
-import API from "../lib/api";
+import Router from "vue-router";
+import DashboardLayout from "@/layout/DashboardLayout";
+import AuthLayout from "@/layout/AuthLayout";
+Vue.use(Router);
 
-Vue.use(VueRouter);
-
-const logout = (to, from, next) => {
-  store.commit("destroySession");
-  localStorage.removeItem("user");
-  alert("ㅂㅂ");
-  next("/login");
-};
-
-const hasValidToken = async () => {
-  try {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (!storedUser || storedUser.expiresAt > new Date()) {
-      alert("로그인 필요");
-      return false;
+export default new Router({
+  linkExactActiveClass: "active",
+  routes: [
+    {
+      path: "/",
+      redirect: "dashboard",
+      component: DashboardLayout,
+      children: [
+        {
+          path: "/dashboard",
+          name: "dashboard",
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Dashboard.vue")
+        },
+        {
+          path: "/icons",
+          name: "icons",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Icons.vue")
+        },
+        {
+          path: "/profile",
+          name: "profile",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/UserProfile.vue")
+        },
+        {
+          path: "/maps",
+          name: "maps",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Maps.vue")
+        },
+        {
+          path: "/tables",
+          name: "tables",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Tables.vue")
+        }
+      ]
+    },
+    {
+      path: "/",
+      redirect: "login",
+      component: AuthLayout,
+      children: [
+        {
+          path: "/login",
+          name: "login",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Login.vue")
+        },
+        {
+          path: "/register",
+          name: "register",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Register.vue")
+        }
+      ]
     }
-
-    const { user } = await API.create()
-      .post()
-      .url(`/users/profile`)
-      .headers({ Authorization: storedUser.token })
-      .build();
-
-    store.commit("createSession", { user });
-
-    return true;
-  } catch (error) {
-    store.commit("destroySession");
-    localStorage.removeItem("user");
-    return false;
-  }
-};
-
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login
-  },
-  {
-    path: "/logout",
-    name: "Logout",
-    // component: Logout
-    beforeEnter: logout
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register
-  }
-];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+  ]
 });
-
-// 인증
-router.beforeEach(async (to, from, next) => {
-  if (to.name === "Login" || to.name === "Register") {
-    if (store.state.user || (await hasValidToken())) {
-      alert("이미 로그인데스");
-      return next(from);
-    }
-
-    return next();
-  }
-
-  if (store.state.user || (await hasValidToken())) return next();
-
-  return next("/login");
-});
-
-export default router;
