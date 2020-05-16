@@ -66,19 +66,21 @@ class ApiBuilder {
     return this;
   }
 
-  build() {
-    return new Promise((resolve, reject) => {
-      Axios({
+  async build() {
+    try {
+      const response = await Axios({
         method: this._method,
         headers: this._headers,
         url: this._url,
         data: this._data,
         timeout: this._timeout,
         params: this._params
-      })
-        .then(response => resolve(response.data.data))
-        .catch(error => reject(error.response.data));
-    });
+      });
+
+      return response.data.data;
+    } catch (error) {
+      throw error.response.data;
+    }
   }
 }
 
