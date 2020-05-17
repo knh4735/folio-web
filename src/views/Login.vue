@@ -62,6 +62,11 @@ export default {
   },
   methods: {
     login: async function() {
+      if (this.user.username === "" || this.user.password === "") {
+        alert("아이디, 비밀번호를 정확히 입력해주세요.");
+        return;
+      }
+
       try {
         const { user, session } = await API.create()
           .post()
@@ -69,7 +74,7 @@ export default {
           .data(this.user)
           .build();
 
-        store.commit("createSession", { user, session });
+        store.commit("createSession", user);
         localStorage.setItem("user", JSON.stringify(session));
 
         router.push("/");

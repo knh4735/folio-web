@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {},
   mutations: {
-    createSession(state, payload) {
-      state.user = payload.user;
+    createSession(state, user) {
+      state.user = user;
     },
     destroySession(state) {
       delete state.user;

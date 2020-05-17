@@ -83,7 +83,7 @@ const hasValidToken = async (isToLogin = false) => {
       .headers({ Authorization: storedUser.token })
       .build();
 
-    store.commit("createSession", { user });
+    store.commit("createSession", user);
 
     return true;
   } catch (error) {

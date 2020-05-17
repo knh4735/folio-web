@@ -212,7 +212,7 @@ import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 import InputWarning from "@/components/InputWarning.vue";
 
-const gender = ["남자", "여자", undefined];
+const gender = ["남자", "여자"];
 
 export default {
   name: "Register",
@@ -273,7 +273,7 @@ export default {
           .data(this.user)
           .build();
 
-        store.commit("createSession", { user, session });
+        store.commit("createSession", user);
         localStorage.setItem("user", JSON.stringify(session));
 
         router.push("/");
@@ -314,7 +314,7 @@ export default {
         this.isValid.birthday = !isNaN(birthday) && birthday < new Date();
       } else this.isValid.birthday = undefined;
 
-      if (this.user.gender !== "") {
+      if (this.user.gender !== undefined) {
         this.isValid.gender = gender.indexOf(this.user.gender) !== -1;
       } else this.isValid.gender = undefined;
 
