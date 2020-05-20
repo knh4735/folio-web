@@ -61,6 +61,15 @@ class ApiBuilder {
     return this;
   }
 
+  auth() {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    this._headers = {
+      ...this._headers,
+      Authorization: storedUser.token
+    };
+    return this;
+  }
+
   params(params) {
     this._params = params;
     return this;

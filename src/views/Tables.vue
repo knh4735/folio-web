@@ -1,51 +1,5 @@
 <template>
   <div class="content">
-    <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-7">
-      <!-- Card stats -->
-      <div class="row">
-        <div class="col-xl-3 col-lg-6">
-          <stats-card
-            title="Total traffic"
-            type="gradient-red"
-            sub-title="350,897"
-            icon="ni ni-active-40"
-            class="mb-4 mb-xl-0"
-          >
-          </stats-card>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <stats-card
-            title="Total traffic"
-            type="gradient-orange"
-            sub-title="2,356"
-            icon="ni ni-chart-pie-35"
-            class="mb-4 mb-xl-0"
-          >
-          </stats-card>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <stats-card
-            title="Sales"
-            type="gradient-green"
-            sub-title="924"
-            icon="ni ni-money-coins"
-            class="mb-4 mb-xl-0"
-          >
-          </stats-card>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <stats-card
-            title="Performance"
-            type="gradient-info"
-            sub-title="49,65%"
-            icon="ni ni-chart-bar-32"
-            class="mb-4 mb-xl-0"
-          >
-          </stats-card>
-        </div>
-      </div>
-    </base-header>
-
     <div class="container-fluid mt--7">
       <div class="row">
         <div class="col">
@@ -57,8 +11,21 @@
 </template>
 <script>
 import ProjectsTable from "./Tables/ProjectsTable";
+import API from "@/lib/api";
+
 export default {
   name: "tables",
+  data: async function() {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const data = await API.create()
+      .headers({ Authorization: storedUser.token })
+      .get()
+      .url(`/portfolios`)
+      .build();
+
+    console.log(data);
+    return data;
+  },
   components: {
     ProjectsTable
   }

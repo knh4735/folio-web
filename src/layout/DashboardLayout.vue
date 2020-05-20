@@ -3,6 +3,65 @@
     <div class="main-content">
       <dashboard-navbar></dashboard-navbar>
 
+      <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-7">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col">
+            <stats-card
+              title="Total traffic"
+              type="gradient-red"
+              sub-title="350,897"
+              icon="ni ni-active-40"
+              class="mb-4 mb-xl-0"
+            >
+            </stats-card>
+          </div>
+          <div class="col">
+            <a href="/careers">
+              <stats-card
+                title="내 경력"
+                type="gradient-red"
+                sub-title="350,897"
+                icon="ni ni-active-40"
+                class="mb-4 mb-xl-0"
+              >
+              </stats-card>
+            </a>
+          </div>
+          <div class="col">
+            <a href="/skills">
+              <stats-card
+                title="내 기술 스택"
+                type="gradient-orange"
+                sub-title="2,356"
+                icon="ni ni-chart-pie-35"
+                class="mb-4 mb-xl-0"
+              >
+              </stats-card>
+            </a>
+          </div>
+          <div class="col">
+            <stats-card
+              title="Sales"
+              type="gradient-green"
+              sub-title="924"
+              icon="ni ni-money-coins"
+              class="mb-4 mb-xl-0"
+            >
+            </stats-card>
+          </div>
+          <div class="col">
+            <stats-card
+              title="Performance"
+              type="gradient-info"
+              sub-title="49,65%"
+              icon="ni ni-chart-bar-32"
+              class="mb-4 mb-xl-0"
+            >
+            </stats-card>
+          </div>
+        </div>
+      </base-header>
       <div>
         <fade-transition :duration="200" origin="center top" mode="out-in">
           <!-- your content here -->
