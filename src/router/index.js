@@ -23,7 +23,7 @@ const router = new Router({
             import(/* webpackChunkName: "demo" */ "../views/Icons.vue")
         },
         {
-          path: "/profile",
+          path: "/template-profile",
           name: "profile",
           component: () =>
             import(/* webpackChunkName: "demo" */ "../views/UserProfile.vue")
@@ -45,6 +45,12 @@ const router = new Router({
           name: "skills",
           component: () =>
             import(/* webpackChunkName: "demo" */ "../views/Skills.vue")
+        },
+        {
+          path: "/profile",
+          name: "profile",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Profile.vue")
         }
       ]
     },
