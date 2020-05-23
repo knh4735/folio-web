@@ -8,20 +8,18 @@
         <div class="row">
           <div class="col">
             <stats-card
-              title="Total traffic"
               type="gradient-red"
-              sub-title="350,897"
+              sub-title="내 정보"
               icon="ni ni-active-40"
               class="mb-4 mb-xl-0"
             >
             </stats-card>
           </div>
           <div class="col">
-            <a href="/careers">
+            <a href="/projects">
               <stats-card
-                title="내 경력"
                 type="gradient-red"
-                sub-title="350,897"
+                sub-title="내 프로젝트"
                 icon="ni ni-active-40"
                 class="mb-4 mb-xl-0"
               >
@@ -31,9 +29,8 @@
           <div class="col">
             <a href="/skills">
               <stats-card
-                title="내 기술 스택"
                 type="gradient-orange"
-                sub-title="2,356"
+                sub-title="내 기술 스택"
                 icon="ni ni-chart-pie-35"
                 class="mb-4 mb-xl-0"
               >
@@ -41,24 +38,26 @@
             </a>
           </div>
           <div class="col">
-            <stats-card
-              title="Sales"
-              type="gradient-green"
-              sub-title="924"
-              icon="ni ni-money-coins"
-              class="mb-4 mb-xl-0"
-            >
-            </stats-card>
+            <a href="/educations">
+              <stats-card
+                type="gradient-green"
+                sub-title="내 학력"
+                icon="ni ni-money-coins"
+                class="mb-4 mb-xl-0"
+              >
+              </stats-card>
+            </a>
           </div>
           <div class="col">
-            <stats-card
-              title="Performance"
-              type="gradient-info"
-              sub-title="49,65%"
-              icon="ni ni-chart-bar-32"
-              class="mb-4 mb-xl-0"
-            >
-            </stats-card>
+            <a href="/careers">
+              <stats-card
+                type="gradient-info"
+                sub-title="내 경력"
+                icon="ni ni-chart-bar-32"
+                class="mb-4 mb-xl-0"
+              >
+              </stats-card>
+            </a>
           </div>
         </div>
       </base-header>
