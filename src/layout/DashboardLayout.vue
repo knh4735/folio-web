@@ -9,9 +9,9 @@
           <div class="col">
             <a href="/profile">
               <stats-card
-                type="gradient-red"
+                type="gradient-green"
                 sub-title="내 정보"
-                icon="ni ni-active-40"
+                icon="ni ni-badge"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>
