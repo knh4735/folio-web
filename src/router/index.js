@@ -13,7 +13,7 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      redirect: "tables",
+      redirect: "",
       component: DashboardLayout,
       children: [
         {
@@ -29,10 +29,10 @@ const router = new Router({
             import(/* webpackChunkName: "demo" */ "../views/UserProfile.vue")
         },
         {
-          path: "/tables",
-          name: "tables",
+          path: "/",
+          name: "portfolio-list",
           component: () =>
-            import(/* webpackChunkName: "demo" */ "../views/Tables.vue")
+            import(/* webpackChunkName: "demo" */ "../views/PortfolioList.vue")
         },
         {
           path: "/careers",
