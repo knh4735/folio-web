@@ -29,9 +29,9 @@
           <div class="col">
             <a href="/skills">
               <stats-card
-                type="gradient-orange"
+                type="gradient-purple"
                 sub-title="내 기술 스택"
-                icon="ni ni-chart-pie-35"
+                icon="ni  ni-books"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>
