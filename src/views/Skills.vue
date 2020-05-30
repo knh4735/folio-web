@@ -21,6 +21,7 @@
                   :value="item.level * 20"
                   :showPercentage="false"
                   :height="10"
+                  :label="item.level"
                 ></base-progress>
               </td>
             </template>
