@@ -16,7 +16,8 @@ export default {
   props: {
     value: {
       type: [String, Array, Number],
-      description: "Slider value"
+      description: "Slider value",
+      default: 1
     },
     disabled: {
       type: Boolean,
@@ -34,7 +35,7 @@ export default {
     },
     type: {
       type: String,
-      default: "",
+      default: "success",
       description: "Slider type (e.g primary, danger etc)"
     },
     options: {
