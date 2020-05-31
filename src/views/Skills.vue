@@ -21,7 +21,7 @@
                   :value="item.level * 20"
                   :showPercentage="false"
                   :height="10"
-                  :label="item.level"
+                  :label="`${item.level}`"
                 ></base-progress>
               </td>
             </template>
@@ -94,6 +94,7 @@ export default {
       }
     },
     addItem: async function(data) {
+      data.level = data.level || 3;
       try {
         const { skill } = await API.create()
           .auth()

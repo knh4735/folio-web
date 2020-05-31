@@ -17,7 +17,7 @@ export default {
     value: {
       type: [String, Array, Number],
       description: "Slider value",
-      default: 1
+      default: 3
     },
     disabled: {
       type: Boolean,
