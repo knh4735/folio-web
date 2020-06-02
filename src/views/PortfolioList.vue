@@ -12,7 +12,9 @@
                   </h3>
                 </div>
                 <div class="col text-right">
-                  <base-button type="primary" size="sm">추가</base-button>
+                  <base-button type="primary" size="sm" @click="addItem"
+                    >추가</base-button
+                  >
                 </div>
               </div>
             </div>
@@ -21,19 +23,16 @@
               <table class="tablesorter table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <slot name="columns" :columns="displayColumns">
-                      <th v-for="column in displayColumns" :key="column">
-                        {{ column }}
-                      </th>
-                    </slot>
-                    <th></th>
+                    <th v-for="column in displayColumns" :key="column">
+                      {{ column }}
+                    </th>
                   </tr>
                 </thead>
                 <tbody class="list">
                   <tr
                     v-for="(item, index) in tableData"
                     :key="index"
-                    @click="link(item.id)"
+                    @click="link(item)"
                   >
                     <td>{{ item.title }}</td>
                     <td>{{ item.created_at }}</td>
@@ -49,7 +48,7 @@
 </template>
 <script>
 import API from "@/lib/api";
-// import router from "@/router";
+import router from "@/router";
 
 export default {
   name: "portfolio-list",
@@ -79,11 +78,17 @@ export default {
         alert(err.message);
       }
     },
-    link(id) {
-      console.log(id);
-      // router.push(`/portfolios/${id}`);
+    link(portfolio) {
+      router.push(`/portfolios/${portfolio.id}`);
+    },
+    addItem() {
+      alert("시룬뎁");
     }
   }
 };
 </script>
-<style></style>
+<style>
+tbody.list tr {
+  cursor: pointer;
+}
+</style>
