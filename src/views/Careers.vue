@@ -14,13 +14,6 @@
             :deleteItem="deleteItem"
             :validateInput="validateInput"
           >
-            <template #default="{ item }">
-              <td>{{ item.name }}</td>
-              <td>{{ item.start_date }}</td>
-              <td>{{ item.end_date }}</td>
-              <td>{{ item.description }}</td>
-            </template>
-
             <template #form="{ item }">
               <td>
                 <base-input
