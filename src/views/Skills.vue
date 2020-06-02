@@ -104,8 +104,10 @@ export default {
           .build();
 
         this.tableData = [skill].concat(this.tableData);
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     saveItem: async function(data) {
