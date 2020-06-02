@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <list
-            title="Careers"
+            title="Projects"
             v-if="isReady"
             :columns="columns"
             :displayColumns="displayColumns"
@@ -16,11 +16,8 @@
           >
             <template #default="{ item }">
               <td>{{ item.name }}</td>
-              <td>{{ item.start_date }}</td>
-              <td>{{ item.end_date }}</td>
               <td>{{ item.description }}</td>
             </template>
-
             <template #form="{ item }">
               <td>
                 <base-input
@@ -29,33 +26,9 @@
                 />
               </td>
               <td>
-                <base-input class="input-group-alternative">
-                  <flat-picker
-                    v-model="item.start_date"
-                    slot-scope="{ focus, blur }"
-                    :config="{ allowInput: true, wrap: true }"
-                    class="form-control datepicker"
-                    @on-open="focus"
-                    @on-close="blur"
-                  />
-                </base-input>
-              </td>
-              <td>
-                <base-input class="input-group-alternative">
-                  <flat-picker
-                    v-model="item.end_date"
-                    slot-scope="{ focus, blur }"
-                    :config="{ allowInput: true, wrap: true }"
-                    class="form-control datepicker"
-                    @on-open="focus"
-                    @on-close="blur"
-                  />
-                </base-input>
-              </td>
-              <td>
                 <textarea
                   class="form-control form-control-alternative"
-                  rows="3"
+                  rows="5"
                   placeholder="Write a large text here ..."
                   v-model="item.description"
                 ></textarea>
@@ -70,15 +43,13 @@
 <script>
 import List from "@/components/List";
 import API from "@/lib/api";
-import flatPicker from "vue-flatpickr-component";
-import "flatpickr/dist/flatpickr.css";
 
 export default {
-  name: "careers",
+  name: "projects",
   data() {
     return {
-      displayColumns: ["이름", "입사일", "퇴사일", "설명"],
-      columns: ["name", "start_date", "end_date", "description"],
+      displayColumns: ["이름", "설명"],
+      columns: ["name", "description"],
       tableData: [],
       isReady: false
     };
@@ -90,45 +61,42 @@ export default {
   methods: {
     loadData: async function() {
       try {
-        const { careers } = await API.create()
+        const { projects } = await API.create()
           .auth()
           .get()
-          .url(`/careers`)
+          .url(`/projects`)
           .build();
-        return careers;
+        return projects;
       } catch (err) {
         alert(err.message);
       }
     },
     addItem: async function(data) {
       try {
-        const { career } = await API.create()
+        const { project } = await API.create()
           .auth()
           .post()
-          .url(`/careers`)
+          .url(`/projects`)
           .data(data)
           .build();
 
-        this.tableData = [career].concat(this.tableData);
-
-        return true;
+        this.tableData = [project].concat(this.tableData);
       } catch (err) {
         alert(err.message);
-        return false;
       }
     },
     saveItem: async function(data) {
       try {
-        const { career } = await API.create()
+        const { project } = await API.create()
           .auth()
           .put()
-          .url(`/careers/${data.id}`)
+          .url(`/projects/${data.id}`)
           .data(data)
           .build();
 
         this.tableData = this.tableData.map(item => {
-          if (item.id !== career.id) return item;
-          return career;
+          if (item.id !== project.id) return item;
+          return project;
         });
       } catch (err) {
         alert(err.message);
@@ -139,7 +107,7 @@ export default {
         await API.create()
           .auth()
           .delete()
-          .url(`/careers/${id}`)
+          .url(`/projects/${id}`)
           .build();
 
         this.tableData = this.tableData.filter(item => item.id !== id);
@@ -153,8 +121,7 @@ export default {
     }
   },
   components: {
-    List,
-    flatPicker
+    List
   }
 };
 </script>

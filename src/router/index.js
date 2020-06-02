@@ -13,7 +13,7 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      redirect: "tables",
+      redirect: "",
       component: DashboardLayout,
       children: [
         {
@@ -23,16 +23,28 @@ const router = new Router({
             import(/* webpackChunkName: "demo" */ "../views/Icons.vue")
         },
         {
-          path: "/profile",
+          path: "/template-profile",
           name: "profile",
           component: () =>
             import(/* webpackChunkName: "demo" */ "../views/UserProfile.vue")
         },
         {
-          path: "/tables",
-          name: "tables",
+          path: "/",
+          name: "portfolio-list",
           component: () =>
-            import(/* webpackChunkName: "demo" */ "../views/Tables.vue")
+            import(/* webpackChunkName: "demo" */ "../views/PortfolioList.vue")
+        },
+        {
+          path: "/portfolios/:id",
+          name: "portfolio",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Portfolio.vue")
+        },
+        {
+          path: "/projects",
+          name: "projects",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Projects.vue")
         },
         {
           path: "/careers",
@@ -51,6 +63,12 @@ const router = new Router({
           name: "educations",
           component: () =>
             import(/* webpackChunkName: "demo" */ "../views/Educations.vue")
+        },
+        {
+          path: "/profile",
+          name: "profile",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/Profile.vue")
         }
       ]
     },

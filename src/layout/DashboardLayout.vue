@@ -7,13 +7,15 @@
         <!-- Card stats -->
         <div class="row">
           <div class="col">
-            <stats-card
-              type="gradient-red"
-              sub-title="내 정보"
-              icon="ni ni-active-40"
-              class="mb-4 mb-xl-0"
-            >
-            </stats-card>
+            <a href="/profile">
+              <stats-card
+                type="gradient-green"
+                sub-title="내 정보"
+                icon="ni ni-badge"
+                class="mb-4 mb-xl-0"
+              >
+              </stats-card>
+            </a>
           </div>
           <div class="col">
             <a href="/projects">
@@ -29,9 +31,9 @@
           <div class="col">
             <a href="/skills">
               <stats-card
-                type="gradient-orange"
+                type="gradient-purple"
                 sub-title="내 기술 스택"
-                icon="ni ni-chart-pie-35"
+                icon="ni  ni-books"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>

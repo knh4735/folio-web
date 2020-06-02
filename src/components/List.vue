@@ -194,7 +194,10 @@ export default {
     },
     addRow: async function() {
       if (!this.validateInput(this.newData)) return;
-      await this.addItem(this.newData);
+
+      const isAdded = await this.addItem(this.newData);
+      if (!isAdded) return;
+
       this.newData = this.initNewData();
       this.addFlag = false;
     },
