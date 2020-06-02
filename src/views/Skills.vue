@@ -13,6 +13,48 @@
             :saveItem="saveItem"
             :deleteItem="deleteItem"
           >
+            <template #default="{ item }">
+              <td>{{ item.name }}</td>
+              <td>
+                <base-progress
+                  type="success"
+                  :value="item.level * 20"
+                  :showPercentage="false"
+                  :height="10"
+                  :label="`${item.level}`"
+                ></base-progress>
+              </td>
+            </template>
+
+            <template #form="{ item }">
+              <td>
+                <base-input
+                  v-model="item.name"
+                  placeholder="기술명을 입력해주세요"
+                  class="input-group-alternative"
+                />
+              </td>
+              <td>
+                <base-slider
+                  v-model="item.level"
+                  :range="{ min: 1, max: 5 }"
+                  :required="true"
+                  :options="{
+                    step: 1,
+                    format: {
+                      to: function(value) {
+                        return value;
+                      },
+                      from: function(value) {
+                        return value;
+                      }
+                    },
+                    tooltips: [true]
+                  }"
+                >
+                </base-slider>
+              </td>
+            </template>
           </list>
         </div>
       </div>
@@ -52,6 +94,7 @@ export default {
       }
     },
     addItem: async function(data) {
+      data.level = data.level || 3;
       try {
         const { skill } = await API.create()
           .auth()
@@ -61,8 +104,10 @@ export default {
           .build();
 
         this.tableData = [skill].concat(this.tableData);
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     saveItem: async function(data) {
@@ -101,4 +146,14 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.noUi-horizontal {
+  height: 7px;
+}
+.progress-wrapper {
+  padding-top: 0;
+}
+.table td .progress {
+  width: 100%;
+}
+</style>

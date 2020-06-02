@@ -6,9 +6,7 @@
     >
       <div class="progress-label" v-if="$slots.label || label">
         <span>
-          <slot name="label">
-            {{ label }}
-          </slot>
+          <slot name="label"> Level : {{ label }} </slot>
         </span>
       </div>
       <div
