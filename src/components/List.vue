@@ -196,7 +196,7 @@ export default {
       if (!this.validateInput(this.newData)) return;
 
       const isAdded = await this.addItem(this.newData);
-      if (!isAdded) return;
+      if (isAdded === false) return;
 
       this.newData = this.initNewData();
       this.addFlag = false;

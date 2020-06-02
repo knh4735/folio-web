@@ -81,8 +81,11 @@ export default {
           .build();
 
         this.tableData = [project].concat(this.tableData);
+
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     saveItem: async function(data) {
