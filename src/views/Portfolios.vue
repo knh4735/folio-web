@@ -20,7 +20,9 @@
             </div>
 
             <div class="table-responsive">
-              <table class="tablesorter table align-items-center table-flush">
+              <table
+                class="tablesorter table align-items-center table-flush portfolio-table"
+              >
                 <thead class="thead-light">
                   <tr>
                     <th v-for="column in displayColumns" :key="column">
@@ -88,7 +90,7 @@ export default {
 };
 </script>
 <style>
-tbody.list tr {
+.portfolio-table tbody.list tr {
   cursor: pointer;
 }
 </style>
