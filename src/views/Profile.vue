@@ -167,6 +167,7 @@ export default {
           alert("변동 사항이 없습니다.");
           return;
         }
+
         const { user } = await API.create()
           .put()
           .auth()
