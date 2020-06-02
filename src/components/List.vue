@@ -58,6 +58,12 @@
             </td>
           </tr>
 
+          <tr v-if="tableData.length === 0">
+            <td class="empty-row" :colspan="columns.length + 1">
+              내용이 없습니다.
+            </td>
+          </tr>
+
           <tr v-for="(item, index) in tableData" :key="index">
             <slot :item="item" v-if="!edit[item.id]">
               <td v-for="(column, index) in colsWithValue(item)" :key="index">

@@ -51,7 +51,7 @@ import API from "@/lib/api";
 import router from "@/router";
 
 export default {
-  name: "portfolio-list",
+  name: "portfolios",
   data() {
     return {
       displayColumns: ["제목", "생성일자"],
@@ -82,7 +82,7 @@ export default {
       router.push(`/portfolios/${portfolio.id}`);
     },
     addItem() {
-      alert("시룬뎁");
+      router.push(`/portfolio/new`);
     }
   }
 };
