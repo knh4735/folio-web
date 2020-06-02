@@ -74,10 +74,7 @@ export default {
       }
     },
     update({ type, data }) {
-      this.portfolio = {
-        ...this.portfolio,
-        [type]: data
-      };
+      this.portfolio[type] = data;
     }
   },
   components: {

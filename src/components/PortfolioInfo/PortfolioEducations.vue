@@ -39,7 +39,18 @@
         </base-input>
       </td>
       <td>
-        <base-input v-model="item.status" class="input-group-alternative" />
+        <div class="form-group input-group-alternative mb-3 input-group">
+          <select
+            class="form-control"
+            v-model="item.status"
+            style="flex:1; padding-left: 0;"
+          >
+            <option value="재학">재학</option>
+            <option value="휴학">휴학</option>
+            <option value="졸업예정">졸업예정</option>
+            <option value="졸업">졸업</option>
+          </select>
+        </div>
       </td>
     </template>
   </portfolio-list>
@@ -114,7 +125,7 @@ export default {
           .build();
 
         this.$emit("update", {
-          type: "skills",
+          type: "educations",
           data: this.tableData.map(item => {
             if (item.id !== education.id) return item;
             return education;
