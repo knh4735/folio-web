@@ -17,22 +17,16 @@ const router = new Router({
       component: DashboardLayout,
       children: [
         {
-          path: "/icons",
-          name: "icons",
-          component: () =>
-            import(/* webpackChunkName: "demo" */ "../views/Icons.vue")
-        },
-        {
-          path: "/template-profile",
-          name: "profile",
-          component: () =>
-            import(/* webpackChunkName: "demo" */ "../views/UserProfile.vue")
-        },
-        {
           path: "/",
-          name: "portfolio-list",
+          name: "portfolios",
           component: () =>
-            import(/* webpackChunkName: "demo" */ "../views/PortfolioList.vue")
+            import(/* webpackChunkName: "demo" */ "../views/Portfolios.vue")
+        },
+        {
+          path: "/portfolio/new",
+          name: "new-portfolio",
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/NewPortfolio.vue")
         },
         {
           path: "/portfolios/:id",
