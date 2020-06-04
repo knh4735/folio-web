@@ -143,7 +143,7 @@
 
                 <base-input
                   v-model="user.mobile"
-                  type="number"
+                  type="tel"
                   class="input-group-alternative mb-3"
                   placeholder="휴대폰 번호"
                   addon-left-icon="ni ni-mobile-button"

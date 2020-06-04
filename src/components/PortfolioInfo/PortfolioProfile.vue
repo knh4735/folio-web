@@ -189,7 +189,7 @@
           <div v-else>
             <base-input
               v-model="portfolio.mobile"
-              type="number"
+              type="tel"
               input-classes="form-control-alternative"
               placeholder="010-1234-5678"
               :valid="isValid.mobile"
@@ -292,6 +292,14 @@ export default {
       this.editFlag = true;
     },
 
+    cancelEdit() {
+      const { portfolio, isValid } = this.initData();
+      this.portfolio = portfolio;
+      this.isValid = isValid;
+
+      this.editFlag = false;
+    },
+
     async savePortfolio() {
       try {
         this.validateInput();
@@ -326,14 +334,6 @@ export default {
       } catch (error) {
         alert(error.message);
       }
-    },
-
-    cancelEdit() {
-      const { portfolio, isValid } = this.initData();
-      this.portfolio = portfolio;
-      this.isValid = isValid;
-
-      this.editFlag = false;
     },
 
     async addPortfolio() {
