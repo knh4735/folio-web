@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <list
-            title="Projects"
+            title="내 프로젝트"
             v-if="isReady"
             :columns="columns"
             :displayColumns="displayColumns"
