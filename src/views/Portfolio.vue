@@ -3,6 +3,12 @@
     <div class="container-fluid mt--7">
       <div class="row">
         <div class="col">
+          <portfolio-profile
+            v-if="isReady"
+            :orgData="portfolio"
+            @update="update"
+          />
+
           <portfolio-projects
             v-if="isReady"
             :portfolioId="portfolioId"
@@ -37,6 +43,7 @@
 </template>
 <script>
 import API from "@/lib/api";
+import PortfolioProfile from "@/components/PortfolioInfo/PortfolioProfile.vue";
 import PortfolioSkills from "@/components/PortfolioInfo/PortfolioSkills.vue";
 import PortfolioProjects from "@/components/PortfolioInfo/PortfolioProjects.vue";
 import PortfolioEducations from "@/components/PortfolioInfo/PortfolioEducations.vue";
@@ -74,10 +81,19 @@ export default {
       }
     },
     update({ type, data }) {
+      if (type === "profile") {
+        this.portfolio = {
+          ...this.portfolio,
+          ...data
+        };
+        return;
+      }
+
       this.portfolio[type] = data;
     }
   },
   components: {
+    PortfolioProfile,
     PortfolioSkills,
     PortfolioProjects,
     PortfolioEducations,
