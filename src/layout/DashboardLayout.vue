@@ -3,7 +3,7 @@
     <div class="main-content">
       <dashboard-navbar></dashboard-navbar>
 
-      <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-7">
+      <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-7">
         <!-- Card stats -->
         <div class="row">
           <div class="col">
@@ -22,7 +22,7 @@
               <stats-card
                 type="gradient-red"
                 sub-title="내 프로젝트"
-                icon="ni ni-active-40"
+                icon="ni ni-folder-17"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>
@@ -33,7 +33,7 @@
               <stats-card
                 type="gradient-purple"
                 sub-title="내 기술 스택"
-                icon="ni  ni-books"
+                icon="ni ni-books"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>
@@ -42,9 +42,9 @@
           <div class="col">
             <a href="/educations">
               <stats-card
-                type="gradient-green"
+                type="gradient-orange"
                 sub-title="내 학력"
-                icon="ni ni-money-coins"
+                icon="ni ni-briefcase-24"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>
@@ -53,9 +53,9 @@
           <div class="col">
             <a href="/careers">
               <stats-card
-                type="gradient-info"
+                type="gradient-primary"
                 sub-title="내 경력"
-                icon="ni ni-chart-bar-32"
+                icon="ni ni-building"
                 class="mb-4 mb-xl-0"
               >
               </stats-card>
