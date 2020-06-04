@@ -117,7 +117,7 @@
               text="주소는 1000자 이내로 입력해주세요."
             />
             <div class="text-center">
-              <base-button type="primary" class="my-4" @click="save">
+              <base-button type="success" class="my-4" @click="save">
                 저장
               </base-button>
             </div>

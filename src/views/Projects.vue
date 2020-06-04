@@ -16,7 +16,9 @@
           >
             <template #default="{ item }">
               <td>{{ item.name }}</td>
-              <td>{{ item.description }}</td>
+              <td style=" white-space: pre-wrap;">
+                {{ item.description }}
+              </td>
             </template>
             <template #form="{ item }">
               <td>
@@ -29,7 +31,7 @@
                 <textarea
                   class="form-control form-control-alternative"
                   rows="5"
-                  placeholder="Write a large text here ..."
+                  placeholder="프로젝트 상세설명"
                   v-model="item.description"
                 ></textarea>
               </td>

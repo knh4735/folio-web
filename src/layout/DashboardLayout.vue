@@ -86,4 +86,8 @@ export default {
   }
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.col {
+  vertical-align: middle;
+}
+</style>

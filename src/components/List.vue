@@ -8,7 +8,7 @@
           </h3>
         </div>
         <div class="col text-right">
-          <base-button type="primary" size="sm" @click.native="openForm"
+          <base-button type="primary" size="md" @click.native="openForm"
             >추가</base-button
           >
         </div>
@@ -24,7 +24,7 @@
                 {{ column }}
               </th>
             </slot>
-            <th></th>
+            <th style="width:200px;"></th>
           </tr>
         </thead>
         <tbody class="list">
@@ -240,4 +240,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.form-group {
+  margin: 0;
+}
+</style>
