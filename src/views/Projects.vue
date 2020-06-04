@@ -101,8 +101,11 @@ export default {
           if (item.id !== project.id) return item;
           return project;
         });
+
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     deleteItem: async function(id) {

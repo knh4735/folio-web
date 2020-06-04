@@ -131,8 +131,11 @@ export default {
           if (item.id !== education.id) return item;
           return education;
         });
+
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     deleteItem: async function(id) {
