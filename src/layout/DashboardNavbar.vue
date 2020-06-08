@@ -7,12 +7,23 @@
   >
     <div class="ml-lg-auto"></div>
     <base-button
+      v-show="isUser"
       tag="a"
       href="/logout"
       type="danger"
       size="lg"
       icon="ni ni-button-power"
     >
+    </base-button>
+    <base-button
+      v-show="!isUser"
+      tag="a"
+      href="/login"
+      type="info"
+      size="sm"
+      icon="ni ni-circle-08"
+    >
+      로그인/회원가입
     </base-button>
   </base-nav>
 </template>
@@ -22,6 +33,13 @@ export default {
     return {
       activeNotifications: false
     };
+  },
+  props: {
+    isUser: {
+      type: Boolean,
+      description: "로그인한 사용자인지",
+      default: true
+    }
   }
 };
 </script>
