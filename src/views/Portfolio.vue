@@ -61,6 +61,12 @@
         {{ code }}
       </div>
       <template slot="footer">
+        <base-button
+          type="primary"
+          v-clipboard:copy="code"
+          v-clipboard:success="onCopy"
+          >복사하기</base-button
+        >
         <base-button type="secondary" @click="modalFlag = false"
           >닫기</base-button
         >
@@ -69,6 +75,10 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
+import VueClipboard from "vue-clipboard2";
+Vue.use(VueClipboard);
+
 import API from "@/lib/api";
 import router from "@/router";
 import PortfolioProfile from "@/components/PortfolioInfo/PortfolioProfile.vue";
@@ -157,6 +167,12 @@ export default {
       } catch (err) {
         alert(err.message);
       }
+    },
+    onCopy() {
+      this.$notify({
+        type: "info",
+        title: "공유 링크가 복사됬습니다."
+      });
     }
   },
   computed: {
