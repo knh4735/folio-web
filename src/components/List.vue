@@ -194,11 +194,12 @@ export default {
     }
   },
   methods: {
-    openForm: function() {
+    openForm() {
       if (this.addFlag) return;
       this.addFlag = true;
     },
-    addRow: async function() {
+
+    async addRow() {
       if (!this.validateInput(this.newData)) return;
 
       const isAdded = await this.addItem(this.newData);
@@ -207,30 +208,40 @@ export default {
       this.newData = this.initNewData();
       this.addFlag = false;
     },
-    cancelAddRow: function() {
+
+    cancelAddRow() {
       this.newData = this.initNewData();
       this.addFlag = false;
     },
-    deleteRow: function(itemId) {
+
+    deleteRow(itemId) {
       this.deleteItem(itemId);
     },
-    saveRow: function(itemId) {
+
+    async saveRow(itemId) {
       if (!this.validateInput(this.newData)) return;
-      this.saveItem(this.data[itemId]);
+
+      const isSaved = await this.saveItem(this.data[itemId]);
+      if (isSaved === false) return;
+
       this.edit[itemId] = false;
     },
-    editRow: function(itemId) {
+
+    editRow(itemId) {
       this.edit[itemId] = true;
     },
-    cancelEditRow: function(itemId) {
+
+    cancelEditRow(itemId) {
       this.edit[itemId] = false;
     },
+
     initNewData() {
       return this.columns.reduce((form, key) => {
         form[key] = undefined;
         return form;
       }, {});
     },
+
     hasValue(item, column) {
       return item[column.toLowerCase()] !== "undefined";
     },

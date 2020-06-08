@@ -7,6 +7,20 @@
             {{ title }}
           </h3>
         </div>
+
+        <base-progress
+          v-if="type === 'add'"
+          class="col-xl-1"
+          type="success"
+          striped
+          animated
+          :showPercentage="false"
+          :height="8"
+          :value="(level - 1) * 20"
+        >
+          <template #label>{{ level }} / 5</template>
+        </base-progress>
+
         <div class="col text-right">
           <base-button type="info" size="sm" @click.native="openModal"
             >가져오기</base-button
@@ -59,7 +73,7 @@
             </td>
           </tr>
 
-          <tr v-if="tableData.length === 0">
+          <tr v-if="tableData.length + newData.length === 0">
             <td class="empty-row" :colspan="columns.length + 1">
               내용이 없습니다.
             </td>
@@ -119,6 +133,17 @@
       </table>
     </div>
 
+    <!-- 포폴 추가시 버튼 -->
+    <div v-if="type === 'add'" class="btn-save-list">
+      <base-button
+        type="primary"
+        @click.native="saveRows"
+        :disabled="newData.length === 0"
+        >저장 후 다음</base-button
+      >
+      <base-button type="secondary" @click.native="skip">넘어가기</base-button>
+    </div>
+
     <modal :show.sync="modalFlag" modalClasses="col-md-auto">
       <template slot="header">
         <h5 class="modal-title">{{ title }} 가져오기</h5>
@@ -172,6 +197,10 @@ export default {
     displayColumns: Array,
     columns: Array,
     tableData: Array,
+    level: {
+      type: Number,
+      description: "add 타입에서 상단 진행도에 표시할 단계"
+    },
     loadCentralInfo: {
       type: Function,
       description: "중앙 정보를 반환하는 함수",
@@ -244,6 +273,7 @@ export default {
     }
   },
   methods: {
+    /* ----------------------------뷰 관련 동작---------------------------- */
     async openModal() {
       if (this.modalFlag) return;
 
@@ -262,15 +292,6 @@ export default {
       this.newData = [this.initNewData()].concat(this.newData);
     },
 
-    async addRow(index) {
-      if (!this.validateInput(this.newData[index])) return;
-
-      const isAdded = await this.addItems([this.newData[index]]);
-      if (isAdded === false) return;
-
-      this.newData = this.newData.filter((val, idx) => idx !== index);
-    },
-
     addRows() {
       const newData = this.centralInfoFlag.reduce((data, value, index) => {
         if (!value) return data;
@@ -281,6 +302,16 @@ export default {
       this.modalFlag = false;
     },
 
+    /* ----------------------------데이터 관련 동작---------------------------- */
+    async addRow(index) {
+      if (!this.validateInput(this.newData[index])) return;
+
+      const isAdded = await this.addItems([this.newData[index]]);
+      if (isAdded === false) return;
+
+      this.newData = this.newData.filter((val, idx) => idx !== index);
+    },
+
     cancelAddRow(index) {
       this.newData = this.newData.filter((val, idx) => idx !== index);
     },
@@ -289,9 +320,12 @@ export default {
       this.deleteItem(itemId);
     },
 
-    saveRow(itemId) {
+    async saveRow(itemId) {
       if (!this.validateInput(this.newData)) return;
-      this.saveItem(this.data[itemId]);
+
+      const isSaved = await this.saveItem(this.data[itemId]);
+      if (isSaved === false) return;
+
       this.edit[itemId] = false;
     },
 
@@ -310,6 +344,21 @@ export default {
       }, {});
     },
 
+    /* ----------------------------신규 포폴 추가 관련 동작---------------------------- */
+    async saveRows() {
+      if (this.newData.some(data => !this.validateInput(data))) return;
+
+      const isAdded = await this.addItems(this.newData);
+      if (isAdded === false) return;
+
+      this.$emit("add-complete");
+    },
+
+    skip() {
+      this.$emit("add-complete");
+    },
+
+    /* ----------------------------기타 기능 관련---------------------------- */
     hasValue(item, column) {
       return item[column.toLowerCase()] !== "undefined";
     },
@@ -330,6 +379,18 @@ export default {
 <style>
 .portfolio-list {
   margin-bottom: 30px;
+}
+
+.card-header .progress {
+  margin-bottom: 0;
+}
+
+.card-header .progress-label {
+  margin: 0 auto;
+}
+
+.btn-save-list {
+  margin: 20px auto;
 }
 
 .modal-dialog {

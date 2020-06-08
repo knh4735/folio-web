@@ -124,8 +124,11 @@ export default {
           if (item.id !== skill.id) return item;
           return skill;
         });
+
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     deleteItem: async function(id) {

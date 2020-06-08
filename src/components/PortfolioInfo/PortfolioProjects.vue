@@ -2,6 +2,7 @@
   <portfolio-list
     title="Projects"
     :type="type"
+    :level="level"
     :columns="columns"
     :displayColumns="displayColumns"
     :tableData="tableData"
@@ -9,6 +10,7 @@
     :addItems="addItems"
     :saveItem="saveItem"
     :deleteItem="deleteItem"
+    @add-complete="addComplete"
   >
     <template #default="{ item }">
       <td>{{ item.name }}</td>
@@ -45,7 +47,15 @@ export default {
       description: "view or add. 포폴 조회/수정에 사용되는지 추가에 사용되는지",
       default: "view"
     },
-    tableData: Array
+    level: {
+      type: Number,
+      description: "add 타입에서 상단 진행도에 표시할 단계"
+    },
+    tableData: {
+      type: Array,
+      description: "리스트에 표시할 데이터",
+      default: () => []
+    }
   },
   data() {
     return {
@@ -122,6 +132,9 @@ export default {
       } catch (err) {
         alert(err.message);
       }
+    },
+    addComplete() {
+      this.$emit("add-complete");
     }
   },
   components: { PortfolioList }

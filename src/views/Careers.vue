@@ -132,8 +132,11 @@ export default {
           if (item.id !== career.id) return item;
           return career;
         });
+
+        return true;
       } catch (err) {
         alert(err.message);
+        return false;
       }
     },
     deleteItem: async function(id) {
