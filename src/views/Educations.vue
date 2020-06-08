@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <list
-            title="Educations"
+            title="내 학력"
             v-if="isReady"
             :columns="columns"
             :displayColumns="displayColumns"

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <list
-            title="Skills"
+            title="내 기술 스택"
             v-if="isReady"
             :columns="columns"
             :displayColumns="displayColumns"

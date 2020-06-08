@@ -9,11 +9,10 @@
     <base-button
       tag="a"
       href="/logout"
-      type="secondary"
-      size="sm"
+      type="danger"
+      size="lg"
       icon="ni ni-button-power"
     >
-      로그아웃
     </base-button>
   </base-nav>
 </template>
@@ -26,3 +25,9 @@ export default {
   }
 };
 </script>
+<style>
+a.text-white:hover,
+a.text-white:focus {
+  color: #fff !important;
+}
+</style>

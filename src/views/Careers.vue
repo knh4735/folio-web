@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <list
-            title="Careers"
+            title="내 경력"
             v-if="isReady"
             :columns="columns"
             :displayColumns="displayColumns"
@@ -14,6 +14,15 @@
             :deleteItem="deleteItem"
             :validateInput="validateInput"
           >
+            <template #default="{ item }">
+              <td>{{ item.name }}</td>
+              <td>{{ item.start_date }}</td>
+              <td>{{ item.end_date }}</td>
+              <td style=" white-space: pre-wrap;">
+                {{ item.description }}
+              </td>
+            </template>
+
             <template #form="{ item }">
               <td>
                 <base-input
