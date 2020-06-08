@@ -52,6 +52,20 @@
         </div>
       </div>
     </div>
+
+    <modal :show.sync="modalFlag" modalClasses="col-md-auto">
+      <template slot="header">
+        <h5 class="modal-title">포트폴리오 공유 링크</h5>
+      </template>
+      <div>
+        {{ code }}
+      </div>
+      <template slot="footer">
+        <base-button type="secondary" @click="modalFlag = false"
+          >닫기</base-button
+        >
+      </template>
+    </modal>
   </div>
 </template>
 <script>
@@ -73,7 +87,8 @@ export default {
       columns: ["name", "level"],
       portfolioId: id,
       portfolio: undefined,
-      isReady: false
+      isReady: false,
+      modalFlag: false
     };
   },
   async mounted() {
@@ -108,7 +123,23 @@ export default {
     },
 
     async sharePortfolio() {
-      alert("빨리 만들어라 조현규");
+      if (this.portfolio.public_code !== "") {
+        this.modalFlag = true;
+        return;
+      }
+
+      try {
+        const { code } = await API.create()
+          .auth()
+          .post()
+          .url(`/portfolios/${this.portfolioId}/share`)
+          .build();
+
+        this.portfolio.public_code = code;
+        this.modalFlag = true;
+      } catch (err) {
+        alert(err.message);
+      }
     },
 
     async deletePortfolio() {
@@ -126,6 +157,14 @@ export default {
       } catch (err) {
         alert(err.message);
       }
+    }
+  },
+  computed: {
+    code() {
+      if (!this.portfolio || this.portfolio.public_code === "")
+        return "코드가 없습니다.";
+
+      return `${window.location.origin}/portfolios/view/${this.portfolio.public_code}`;
     }
   },
   components: {

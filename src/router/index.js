@@ -94,16 +94,30 @@ const router = new Router({
             import(/* webpackChunkName: "demo" */ "../views/Register.vue")
         }
       ]
+    },
+    {
+      path: "/",
+      redirect: "",
+      component: DashboardLayout,
+      props: { isSharedView: true },
+      children: [
+        {
+          path: "/portfolios/view/:code",
+          name: "portfolio-view",
+          props: true,
+          component: () =>
+            import(/* webpackChunkName: "demo" */ "../views/PortfolioView.vue")
+        }
+      ]
     }
   ]
 });
 
-const hasValidToken = async (isToLogin = false) => {
+const hasValidToken = async () => {
   try {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     if (!storedUser || storedUser.expiresAt > new Date()) {
-      if (!isToLogin) alert("로그인 필요");
       return false;
     }
 
@@ -128,7 +142,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.name === "login" || to.name === "register") {
     if (from.name === "login" || from.name === "register") return next();
 
-    if (store.state.user || (await hasValidToken(true))) {
+    if (store.state.user || (await hasValidToken())) {
       alert("이미 로그인데스");
       return next(from);
     }
@@ -137,6 +151,9 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (store.state.user || (await hasValidToken())) return next();
+
+  // 공유 페이지는 세션 없이 접근 가능
+  if (to.name === "portfolio-view") return next();
 
   return next("/login");
 });

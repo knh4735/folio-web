@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <div class="main-content">
-      <dashboard-navbar></dashboard-navbar>
+      <dashboard-navbar :isUser="isUser"></dashboard-navbar>
 
       <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-7">
         <!-- Card stats -->
-        <div class="row">
+        <div class="row" v-show="!isSharedView">
           <div class="col">
             <a href="/profile">
               <stats-card
@@ -77,12 +77,25 @@
 import DashboardNavbar from "./DashboardNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
 import { FadeTransition } from "vue2-transitions";
+import store from "@/store";
 
 export default {
   components: {
     DashboardNavbar,
     ContentFooter,
     FadeTransition
+  },
+  props: {
+    isSharedView: {
+      type: Boolean,
+      description: "공유 뷰인지",
+      default: false
+    }
+  },
+  data() {
+    return {
+      isUser: store.state.user ? true : false
+    };
   }
 };
 </script>
