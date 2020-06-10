@@ -4,13 +4,21 @@
       <div class="row">
         <div class="col">
           <div v-if="isReady">
+            <base-button
+              v-print="'#print-view'"
+              id="print-btn"
+              type="primary"
+              icon="ni ni-book-bookmark"
+              size="lg"
+              rounded
+            ></base-button>
             <div sylte="text-align:left;">
               <tabs :fill="false" circle>
                 <tab-pane>
                   <span slot="title" class="nav-link-icon d-block"
                     ><i class="ni ni-bullet-list-67"></i
                   ></span>
-                  <div class="view-vertical">
+                  <div class="view-vertical" id="print-view">
                     <h2>{{ portfolio.title }}</h2>
                     <card>
                       <h5 class="heading-section text-muted mb-4">개인 정보</h5>
@@ -330,11 +338,20 @@
 </template>
 <script>
 import API from "@/lib/api";
+import Vue from "vue";
+import Print from "vue-print-nb";
+
+Vue.use(Print);
 
 export default {
   name: "portfolio-view",
   props: {
-    code: String
+    code: String,
+    type: {
+      type: String,
+      description: "포트폴리오 템플릿 타입",
+      default: ""
+    }
   },
   data() {
     return {
@@ -345,6 +362,7 @@ export default {
   async mounted() {
     this.portfolio = await this.loadData(this.code);
     this.isReady = true;
+    console.log(this.type);
   },
   methods: {
     async loadData(code) {
@@ -358,6 +376,9 @@ export default {
       } catch (err) {
         alert(err.message);
       }
+    },
+    print() {
+      this.$htmlToPaper("print-view");
     }
   },
   components: {}
@@ -431,5 +452,11 @@ export default {
     background: initial;
     page-break-after: always;
   }
+}
+
+#print-btn {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
 }
 </style>
