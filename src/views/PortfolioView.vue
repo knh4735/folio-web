@@ -13,13 +13,14 @@
               rounded
             ></base-button>
             <div sylte="text-align:left;">
+            <div>
               <tabs :fill="false" circle>
                 <tab-pane>
                   <span slot="title" class="nav-link-icon d-block"
                     ><i class="ni ni-bullet-list-67"></i
                   ></span>
-                  <div class="view-vertical" id="print-view">
-                    <h2>{{ portfolio.title }}</h2>
+                  <div class="view-vertical">
+                    <h2 class="title">{{ portfolio.title }}</h2>
                     <card>
                       <h5 class="heading-section text-muted mb-4">개인 정보</h5>
                       <div class="pl-lg-4">
@@ -128,7 +129,7 @@
                     </card>
 
                     <card>
-                      <h5 class="heading-section text-muted mb-4">기술스택</h5>
+                      <h5 class="heading-section text-muted mb-4">기술 스택</h5>
                       <div>
                         <table
                           class="tablesorter table edu align-items-center table-flush"
@@ -187,82 +188,154 @@
                   ></span>
 
                   <div class="view-horizontal">
-                    <h2>{{ portfolio.title }}</h2>
-                    <card>
-                      <h5 class="heading-section text-muted mb-4">개인 정보</h5>
-                      <div class="pl-lg-2">
-                        <div class="row">
-                          <div class="col">
-                            <label class="form-control-label"
-                              >이름 : <span>{{ portfolio.name }} </span></label
-                            >
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <label class="form-control-label"
-                              >생년월일 :
-                              <span>{{ portfolio.birthday }}</span></label
-                            >
-                          </div>
-                          <div class="col">
-                            <label class="form-control-label"
-                              >성별 : <span>{{ portfolio.gender }}</span></label
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <hr calss="my-4" />
-                        <div class="pl-lg-4">
-                          <div class="row">
-                            <div class="col">
-                              <label class="form-control-label"
-                                >이메일 :
-                                <span>{{ portfolio.email }} </span></label
-                              >
+                    <h2 class="title">{{ portfolio.title }}</h2>
+                    <div class="row">
+                      <div class="col-6">
+                        <card>
+                          <h5 class="heading-section text-muted mb-4">
+                            개인 정보
+                          </h5>
+                          <div class="pl-lg-4">
+                            <div class="row">
+                              <div class="col">
+                                <label class="form-control-label"
+                                  >이름 :
+                                  <span>{{ portfolio.name }} </span></label
+                                >
+                              </div>
                             </div>
-                            <div class="col">
-                              <label class="form-control-label"
-                                >휴대폰 번호 :
-                                <span>{{ portfolio.mobile }}</span></label
-                              >
+                            <div class="row">
+                              <div class="col">
+                                <label class="form-control-label"
+                                  >생년월일 :
+                                  <span>{{ portfolio.birthday }}</span></label
+                                >
+                              </div>
+                              <div class="col">
+                                <label class="form-control-label"
+                                  >성별 :
+                                  <span>{{ portfolio.gender }}</span></label
+                                >
+                              </div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col">
-                              <label class="form-control-label"
-                                >주소 :
-                                <span>{{ portfolio.address }}</span></label
-                              >
+                          <div class="pl-lg-4">
+                            <div class="row">
+                              <div class="col">
+                                <label class="form-control-label"
+                                  >이메일 :
+                                  <span>{{ portfolio.email }} </span></label
+                                >
+                              </div>
+                              <div class="col">
+                                <label class="form-control-label"
+                                  >휴대폰 번호 :
+                                  <span>{{ portfolio.mobile }}</span></label
+                                >
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <label class="form-control-label"
+                                  >주소 :
+                                  <span>{{ portfolio.address }}</span></label
+                                >
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </card>
                       </div>
-                      <div>
-                        <h5 class="heading-section text-muted mb-4">학력</h5>
-                        <div>
-                          <table
-                            class="tablesorter table edu align-items-center table-flush"
-                          >
-                            <tbody>
-                              <tr
-                                v-for="edu in portfolio.educations"
-                                :key="edu.id"
-                              >
-                                <td>
-                                  {{ edu.name }}
-                                </td>
-                                <td>입학일자 : {{ edu.start_date }}</td>
-                                <td>졸업일자 : {{ edu.end_date }}</td>
-                                <td>{{ edu.status }}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                      <div class="col-6">
+                        <card>
+                          <h5 class="heading-section text-muted mb-4">학력</h5>
+                          <div>
+                            <table
+                              class="tablesorter table edu align-items-center table-flush"
+                            >
+                              <tbody>
+                                <tr
+                                  v-for="edu in portfolio.educations"
+                                  :key="edu.id"
+                                >
+                                  <td>
+                                    {{ edu.name }}
+                                  </td>
+                                  <td>입학일자 : {{ edu.start_date }}</td>
+                                  <td>졸업일자 : {{ edu.end_date }}</td>
+                                  <td>{{ edu.status }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </card>
                       </div>
-                      <div>
-                        <h5 class="heading-section text-muted mb-2">경력</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <card>
+                          <h5 class="heading-section text-muted mb-4">
+                            기술 스택
+                          </h5>
+                          <div>
+                            <table
+                              class="tablesorter table edu align-items-center table-flush"
+                            >
+                              <tbody>
+                                <tr
+                                  v-for="skill in portfolio.skills"
+                                  :key="skill.id"
+                                >
+                                  <td>
+                                    {{ skill.name }}
+                                  </td>
+                                  <td>숙련도 : {{ skill.level }} / 5</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </card>
+                      </div>
+                      <div class="col-6">
+                        <card :headerClasses="career_card">
+                          <h5 class="heading-section text-muted mb-2">경력</h5>
+                          <div>
+                            <table
+                              class="tablesorter table career align-items-center table-flush"
+                            >
+                              <tbody>
+                                <div
+                                  class="car-element"
+                                  v-for="car in portfolio.careers"
+                                  :key="car.id"
+                                >
+                                  <tr>
+                                    <td style="width:300px;">
+                                      {{ car.name }}
+                                    </td>
+                                    <td>입사일자 : {{ car.start_date }}</td>
+                                    <td>퇴사일자 : {{ car.end_date }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      colspan="3"
+                                      style="white-space:pre-wrap"
+                                      v-if="car.description"
+                                    >
+                                      {{ car.description }}
+                                    </td>
+                                  </tr>
+                                </div>
+                              </tbody>
+                            </table>
+                          </div>
+                        </card>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <card :headerClasses="project_card">
+                        <h5 class="heading-section text-muted mb-2">
+                          프로젝트
+                        </h5>
                         <div>
                           <table
                             class="tablesorter table career align-items-center table-flush"
@@ -270,62 +343,28 @@
                             <tbody>
                               <div
                                 class="car-element"
-                                v-for="car in portfolio.careers"
-                                :key="car.id"
+                                v-for="proj in portfolio.projects"
+                                :key="proj.id"
                               >
                                 <tr>
-                                  <td style="width:300px;">
-                                    {{ car.name }}
+                                  <td>
+                                    {{ proj.name }}
                                   </td>
-                                  <td>입사일자 : {{ car.start_date }}</td>
-                                  <td>퇴사일자 : {{ car.end_date }}</td>
                                 </tr>
                                 <tr>
                                   <td
-                                    colspan="3"
                                     style="white-space:pre-wrap"
-                                    v-if="car.description"
+                                    v-if="proj.description"
                                   >
-                                    {{ car.description }}
+                                    {{ proj.description }}
                                   </td>
                                 </tr>
                               </div>
                             </tbody>
                           </table>
                         </div>
-                      </div>
-                    </card>
-
-                    <card :headerClasses="project_card">
-                      <h5 class="heading-section text-muted mb-2">프로젝트</h5>
-                      <div>
-                        <table
-                          class="tablesorter table career align-items-center table-flush"
-                        >
-                          <tbody>
-                            <div
-                              class="car-element"
-                              v-for="proj in portfolio.projects"
-                              :key="proj.id"
-                            >
-                              <tr>
-                                <td style="width:300px;">
-                                  {{ proj.name }}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td
-                                  style="white-space:pre-wrap"
-                                  v-if="proj.description"
-                                >
-                                  {{ proj.description }}
-                                </td>
-                              </tr>
-                            </div>
-                          </tbody>
-                        </table>
-                      </div>
-                    </card>
+                      </card>
+                    </div>
                   </div>
                 </tab-pane>
               </tabs>
@@ -423,14 +462,22 @@ export default {
   margin: 0;
 }
 
+.view-horizontal {
+  padding-top: 40px;
+}
+
+.view-horizontal .title {
+  text-align: center;
+  color: #5603ad;
+  font-size: 20px;
+}
+
 .view-horizontal .card {
-  width: 29.7cm !important;
-  min-height: 21cm !important;
-  padding: 1cm;
+  padding: 0.5cm;
   margin: 1cm auto;
   border-radius: 5px;
   /*background: white;*/
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .view-horizontal .heading-section,
@@ -439,6 +486,14 @@ export default {
 }
 .view-horizontal .table.edu td {
   border: none;
+}
+
+.view-horizontal .form-control-label {
+  font-size: 15px !important;
+}
+
+.view-horizontal .table td {
+  font-size: 15px !important;
 }
 
 @media print {
