@@ -343,7 +343,7 @@
                           </card>
                         </div>
                       </div>
-                      <div class="col-12">
+                      <div class="col-12" style="padding:0;">
                         <card :headerClasses="project_card">
                           <h5 class="heading-section text-muted mb-2">
                             프로젝트
@@ -481,8 +481,8 @@ export default {
 
 .view-horizontal .title {
   text-align: center;
-  color: #5603ad;
-  font-size: 20px;
+  color: #5e72e4;
+  font-size: 27px;
 }
 
 .view-horizontal .card {
