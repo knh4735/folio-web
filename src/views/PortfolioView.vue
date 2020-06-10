@@ -19,7 +19,7 @@
                     <span slot="title" class="nav-link-icon d-block"
                       ><i class="ni ni-bullet-list-67"></i
                     ></span>
-                    <div class="view-vertical">
+                    <div class="view-vertical" id="print-view">
                       <h2 class="title">{{ portfolio.title }}</h2>
                       <card>
                         <h5 class="heading-section text-muted mb-4">
@@ -526,5 +526,6 @@ export default {
   position: fixed;
   bottom: 10%;
   right: 10%;
+  z-index: 100;
 }
 </style>
