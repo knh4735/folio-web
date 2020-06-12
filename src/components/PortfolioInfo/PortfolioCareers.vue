@@ -12,6 +12,13 @@
     :deleteItem="deleteItem"
     @add-complete="addComplete"
   >
+    <template #default="{ item }">
+      <td>{{ item.name }}</td>
+      <td>{{ item.start_date }}</td>
+      <td>{{ item.end_date }}</td>
+      <td style="white-space:pre-wrap">{{ item.description }}</td>
+    </template>
+
     <template #form="{ item }">
       <td>
         <base-input v-model="item.name" class="input-group-alternative" />
