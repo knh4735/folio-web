@@ -20,12 +20,16 @@
                       ><i class="ni ni-bullet-list-67"></i
                     ></span>
                     <div class="view-vertical">
-                      <h2 class="title">{{ portfolio.title }}</h2>
+                      <h2 class="title" style="text-align:center">
+                        <div class="title-text">
+                          {{ portfolio.title }}
+                        </div>
+                      </h2>
                       <card>
                         <h5 class="heading-section text-muted mb-4">
                           개인 정보
                         </h5>
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-2">
                           <div class="row">
                             <div class="col">
                               <label class="form-control-label"
@@ -49,8 +53,7 @@
                             </div>
                           </div>
                         </div>
-                        <hr calss="my-4" />
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-2">
                           <div class="row">
                             <div class="col">
                               <label class="form-control-label"
@@ -98,7 +101,7 @@
                           </table>
                         </div>
                       </card>
-                      <card :headerClasses="career_card">
+                      <card>
                         <h5 class="heading-section text-muted mb-2">경력</h5>
                         <div>
                           <table
@@ -110,12 +113,16 @@
                                 v-for="car in portfolio.careers"
                                 :key="car.id"
                               >
-                                <tr>
-                                  <td style="width:300px;">
+                                <tr style="width:100%;">
+                                  <td style="width:60%;">
                                     {{ car.name }}
                                   </td>
-                                  <td>입사일자 : {{ car.start_date }}</td>
-                                  <td>퇴사일자 : {{ car.end_date }}</td>
+                                  <td style="width:25%;">
+                                    입사일자 : {{ car.start_date }}
+                                  </td>
+                                  <td style="width:25%;">
+                                    퇴사일자 : {{ car.end_date }}
+                                  </td>
                                 </tr>
                                 <tr>
                                   <td
@@ -138,24 +145,24 @@
                         </h5>
                         <div>
                           <table
-                            class="tablesorter table edu align-items-center table-flush"
+                            class="tablesorter table skill align-items-center table-flush"
                           >
                             <tbody>
                               <tr
                                 v-for="skill in portfolio.skills"
                                 :key="skill.id"
                               >
-                                <td>
-                                  {{ skill.name }}
+                                <td style="width:40%;">- {{ skill.name }}</td>
+                                <td style="width:60%;">
+                                  숙련도 : {{ skill.level }} / 5
                                 </td>
-                                <td>숙련도 : {{ skill.level }} / 5</td>
                               </tr>
                             </tbody>
                           </table>
                         </div>
                       </card>
 
-                      <card :headerClasses="project_card">
+                      <card :bodyClasses="project_card">
                         <h5 class="heading-section text-muted mb-2">
                           프로젝트
                         </h5>
@@ -170,7 +177,9 @@
                                 :key="proj.id"
                               >
                                 <tr>
-                                  <td style="width:300px;">
+                                  <td
+                                    style="width:300px;color:#0b0b61;font-size:16px;"
+                                  >
                                     {{ proj.name }}
                                   </td>
                                 </tr>
@@ -203,7 +212,7 @@
                             <h5 class="heading-section text-muted mb-4">
                               개인 정보
                             </h5>
-                            <div class="pl-lg-4">
+                            <div class="pl-lg-2">
                               <div class="row">
                                 <div class="col">
                                   <label class="form-control-label"
@@ -227,7 +236,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="pl-lg-4">
+                            <div class="pl-lg-2">
                               <div class="row">
                                 <div class="col">
                                   <label class="form-control-label"
@@ -327,11 +336,10 @@
                                       <td>입사일자 : {{ car.start_date }}</td>
                                       <td>퇴사일자 : {{ car.end_date }}</td>
                                     </tr>
-                                    <tr>
+                                    <tr v-if="car.description">
                                       <td
                                         colspan="3"
                                         style="white-space:pre-wrap"
-                                        v-if="car.description"
                                       >
                                         {{ car.description }}
                                       </td>
@@ -344,7 +352,7 @@
                         </div>
                       </div>
                       <div class="col-12" style="padding:0;">
-                        <card :headerClasses="project_card">
+                        <card>
                           <h5 class="heading-section text-muted mb-2">
                             프로젝트
                           </h5>
@@ -437,6 +445,10 @@ export default {
 };
 </script>
 <style>
+body {
+  font-family: "NotoSansKR";
+}
+
 .card-body {
   padding: 10px;
 }
@@ -446,20 +458,56 @@ export default {
   min-height: 29.7cm;
   padding: 1cm;
   margin: 1cm auto;
+  background: white;
+}
+
+.view-vertical .title {
+  font-size: 25px;
+}
+
+.view-vertical .card {
+  border: none;
+  box-shadow: none;
+}
+.view-vertical .card-body {
+  padding: 0;
+}
+
+.view-vertical .card-body td {
+  padding: 16px;
+}
+
+.view-vertical .card-body h5 {
+  display: inline-block;
+  padding: 0 6px 3px 4px;
+  border-bottom: 2px solid #3d3d64;
 }
 
 .view-vertical .heading-section,
 .heading-small {
-  color: #5e72e4 !important;
+  color: #0b0b61 !important;
+  font-size: 20px;
 }
 
-.view-vertical .table.edu td {
+.view-vertical td {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.view-vertical .edu td {
   border: none;
+}
+
+.view-vertical .skill td {
+  border: none;
+  padding: 10px;
 }
 
 .view-vertical .car-element {
   border: 1px solid #eeeeee;
   margin: 15px 0;
+  font-size: 15px;
+  font-weight: bold;
 }
 .view-vertical .career_card {
   padding: 10px;
@@ -468,12 +516,17 @@ export default {
 
 .view-vertical .card {
   margin-bottom: 40px;
+  background: transparent;
 }
 
-.view-vertical @page {
-  size: A4-landscape;
-  margin: 0;
+.view-vertical {
+  @page {
+    size: A4-landscape;
+    margin: 0;
+  }
 }
+
+/******************************VIEW-HORIZONTAL*** **********************/
 
 .view-horizontal {
   padding-top: 40px;
@@ -481,21 +534,25 @@ export default {
 
 .view-horizontal .title {
   text-align: center;
-  color: #5e72e4;
-  font-size: 27px;
+  color: #0b0b61;
+  font-size: 30px;
+  font-family: "BMJUA";
+  font-weight: 500;
 }
 
 .view-horizontal .card {
-  padding: 0.5cm;
-  margin: 1cm auto;
-  border-radius: 5px;
+  padding: 15px;
+  margin: 20px auto;
   /*background: white;*/
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .view-horizontal .heading-section,
 .heading-small {
-  color: #5e72e4 !important;
+  color: #0b0b61 !important;
+  font-family: "BMJUA";
+  font-weight: 500;
+  font-size: 20px;
 }
 .view-horizontal .table.edu td {
   border: none;
