@@ -31,7 +31,7 @@
                         </h5>
                         <div class="pl-lg-2">
                           <div class="row">
-                            <div class="col">
+                            <div v-if="portfolio.name" class="col">
                               <label class="form-control-label"
                                 >이름 :
                                 <span>{{ portfolio.name }} </span></label
@@ -39,13 +39,13 @@
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col">
+                            <div v-if="portfolio.birthday" class="col">
                               <label class="form-control-label"
                                 >생년월일 :
                                 <span>{{ portfolio.birthday }}</span></label
                               >
                             </div>
-                            <div class="col">
+                            <div v-if="portfolio.gender" class="col">
                               <label class="form-control-label"
                                 >성별 :
                                 <span>{{ portfolio.gender }}</span></label
@@ -55,13 +55,13 @@
                         </div>
                         <div class="pl-lg-2">
                           <div class="row">
-                            <div class="col">
+                            <div v-if="portfolio.email" class="col">
                               <label class="form-control-label"
                                 >이메일 :
                                 <span>{{ portfolio.email }} </span></label
                               >
                             </div>
-                            <div class="col">
+                            <div v-if="portfolio.mobile" class="col">
                               <label class="form-control-label"
                                 >휴대폰 번호 :
                                 <span>{{ portfolio.mobile }}</span></label
@@ -69,7 +69,7 @@
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col">
+                            <div v-if="portfolio.address" class="col">
                               <label class="form-control-label"
                                 >주소 :
                                 <span>{{ portfolio.address }}</span></label
@@ -79,7 +79,7 @@
                         </div>
                       </card>
 
-                      <card>
+                      <card v-if="portfolio.educations">
                         <h5 class="heading-section text-muted mb-4">학력</h5>
                         <div>
                           <table
@@ -101,7 +101,7 @@
                           </table>
                         </div>
                       </card>
-                      <card>
+                      <card v-if="portfolio.careers">
                         <h5 class="heading-section text-muted mb-2">경력</h5>
                         <div>
                           <table
@@ -114,7 +114,9 @@
                                 :key="car.id"
                               >
                                 <tr style="width:100%;">
-                                  <td style="width:60%;">
+                                  <td
+                                    style="width:300px;color:#0b0b61;font-size:16px;"
+                                  >
                                     {{ car.name }}
                                   </td>
                                   <td style="width:25%;">
@@ -139,7 +141,7 @@
                         </div>
                       </card>
 
-                      <card>
+                      <card v-if="portfolio.skills">
                         <h5 class="heading-section text-muted mb-4">
                           기술 스택
                         </h5>
@@ -162,7 +164,7 @@
                         </div>
                       </card>
 
-                      <card :bodyClasses="project_card">
+                      <card v-if="portfolio.projects">
                         <h5 class="heading-section text-muted mb-2">
                           프로젝트
                         </h5>
@@ -263,7 +265,7 @@
                           </card>
                         </div>
                         <div class="col-6">
-                          <card>
+                          <card v-if="portfolio.educations">
                             <h5 class="heading-section text-muted mb-4">
                               학력
                             </h5>
@@ -290,7 +292,7 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-6">
+                        <div v-if="portfolio.skills" class="col-6">
                           <card>
                             <h5 class="heading-section text-muted mb-4">
                               기술 스택
@@ -307,15 +309,23 @@
                                     <td>
                                       {{ skill.name }}
                                     </td>
-                                    <td>숙련도 : {{ skill.level }} / 5</td>
+                                    <td>
+                                      <base-progress
+                                        type="primary"
+                                        :value="skill.level * 20"
+                                        :showPercentage="false"
+                                        :height="10"
+                                        :label="`${skill.level}`"
+                                      ></base-progress>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>
                             </div>
                           </card>
                         </div>
-                        <div class="col-6">
-                          <card :headerClasses="career_card">
+                        <div v-if="portfolio.careers" class="col-6">
+                          <card>
                             <h5 class="heading-section text-muted mb-2">
                               경력
                             </h5>
@@ -330,7 +340,9 @@
                                     :key="car.id"
                                   >
                                     <tr>
-                                      <td style="width:300px;">
+                                      <td
+                                        style="width:300px;color:#0b0b61;font-size:16px;"
+                                      >
                                         {{ car.name }}
                                       </td>
                                       <td>입사일자 : {{ car.start_date }}</td>
@@ -352,10 +364,10 @@
                         </div>
                       </div>
                       <div class="col-12" style="padding:0;">
-                        <card>
-                          <h5 class="heading-section text-muted mb-2">
-                            프로젝트
-                          </h5>
+                        <h5 class="heading-section text-muted mb-2">
+                          프로젝트
+                        </h5>
+                        <card v-if="portfolio.projects">
                           <div>
                             <table
                               class="tablesorter table career align-items-center table-flush"
@@ -367,7 +379,9 @@
                                   :key="proj.id"
                                 >
                                   <tr>
-                                    <td>
+                                    <td
+                                      style="width:300px;color:#0b0b61;font-size:16px;"
+                                    >
                                       {{ proj.name }}
                                     </td>
                                   </tr>
@@ -564,6 +578,14 @@ body {
 
 .view-horizontal .table td {
   font-size: 15px !important;
+}
+
+.view-horizontal .progress-wrapper .progress {
+  width: 500px;
+}
+
+.view-horizontal .form-control-label {
+  font-weight: 500;
 }
 
 @media print {
