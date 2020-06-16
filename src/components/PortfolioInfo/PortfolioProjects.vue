@@ -14,7 +14,7 @@
   >
     <template #default="{ item }">
       <td>{{ item.name }}</td>
-      <td>{{ item.description }}</td>
+      <td style="white-space:pre-wrap">{{ item.description }}</td>
     </template>
     <template #form="{ item }">
       <td>

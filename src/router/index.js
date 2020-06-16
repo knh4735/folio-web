@@ -104,7 +104,7 @@ const router = new Router({
         {
           path: "/portfolios/view/:code",
           name: "portfolio-view",
-          props: true,
+          props: route => ({ code: route.params.code, type: route.query.type }),
           component: () =>
             import(/* webpackChunkName: "demo" */ "../views/PortfolioView.vue")
         }
