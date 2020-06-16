@@ -19,7 +19,7 @@
                     <span slot="title" class="nav-link-icon d-block"
                       ><i class="ni ni-bullet-list-67"></i
                     ></span>
-                    <div class="view-vertical">
+                    <div class="view-vertical" id="print-view">
                       <h2 class="title" style="text-align:center">
                         <div class="title-text">
                           {{ portfolio.title }}
@@ -605,5 +605,6 @@ body {
   position: fixed;
   bottom: 10%;
   right: 10%;
+  z-index: 100;
 }
 </style>
