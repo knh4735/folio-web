@@ -10,5 +10,13 @@ Vue.use(ArgonDashboard);
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to) {
+        document.title = to.meta.title || "Folio";
+      }
+    }
+  }
 }).$mount("#app");

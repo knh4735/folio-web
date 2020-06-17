@@ -58,7 +58,7 @@
         <h5 class="modal-title">포트폴리오 공유 링크</h5>
       </template>
       <div>
-        {{ code }}
+        <a :href="code">{{ code }}</a>
       </div>
       <template slot="footer">
         <base-button

@@ -8,14 +8,7 @@
             href="https://www.creative-tim.com"
             class="font-weight-bold ml-1"
             target="_blank"
-            >Creative Tim</a
-          >
-          &
-          <a
-            href="https://www.binarcode.com"
-            class="font-weight-bold ml-1"
-            target="_blank"
-            >Binar Code</a
+            >Folio</a
           >
         </div>
       </div>
@@ -23,30 +16,6 @@
         <ul
           class="nav nav-footer justify-content-center justify-content-lg-end"
         >
-          <li class="nav-item">
-            <a
-              href="https://www.creative-tim.com"
-              class="nav-link"
-              target="_blank"
-              >Creative Tim</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              href="https://www.creative-tim.com/presentation"
-              class="nav-link"
-              target="_blank"
-              >About Us</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              href="http://blog.creative-tim.com"
-              class="nav-link"
-              target="_blank"
-              >Blog</a
-            >
-          </li>
           <li class="nav-item">
             <a
               href="https://www.creative-tim.com/license"

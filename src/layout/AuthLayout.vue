@@ -1,6 +1,6 @@
 <template>
   <div class="main-content bg-default">
-    <div style="min-height: calc(100vh - 9.3rem)">
+    <div style="min-height: calc(100vh - 7.8rem)">
       <!-- Navbar -->
       <base-nav
         class="navbar-top navbar-horizontal navbar-dark"
@@ -33,8 +33,8 @@
               <div class="col-lg-5 col-md-6">
                 <h1 class="text-white">Welcome!</h1>
                 <p class="text-lead text-white">
-                  Use these awesome forms to login or create new account in your
-                  project for free.
+                  Use these awesome portfolios to login or create new account in
+                  your project for free.
                 </p>
               </div>
             </div>
@@ -73,7 +73,7 @@
                 href="https://www.creative-tim.com"
                 class="font-weight-bold ml-1"
                 target="_blank"
-                >Creative Tim</a
+                >Folio</a
               >
             </div>
           </div>
@@ -83,26 +83,10 @@
             >
               <li class="nav-item">
                 <a
-                  href="https://www.creative-tim.com"
-                  class="nav-link"
-                  target="_blank"
-                  >Creative Tim</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
                   href="https://www.creative-tim.com/presentation"
                   class="nav-link"
                   target="_blank"
                   >About Us</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  href="http://blog.creative-tim.com"
-                  class="nav-link"
-                  target="_blank"
-                  >Blog</a
                 >
               </li>
               <li class="nav-item">
